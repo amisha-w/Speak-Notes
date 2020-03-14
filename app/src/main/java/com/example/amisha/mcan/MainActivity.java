@@ -87,13 +87,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.homeBg).setOnTouchListener(new View.OnTouchListener() {
+        findViewById(R.id.button).setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_UP:
                         mSpeechRecognizer.stopListening();
-                        editText.setHint("Tap and say something.");
+                        editText.setHint("You will see input here");
                         break;
 
                     case MotionEvent.ACTION_DOWN:

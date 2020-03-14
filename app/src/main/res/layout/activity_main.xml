@@ -6,7 +6,9 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="@color/colorPrimary"
 android:padding="12dp"
-tools:context=".MainActivity">
+
+
+    tools:context=".MainActivity">
 
 
 <EditText
@@ -14,17 +16,19 @@ tools:context=".MainActivity">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerVertical="true"
-    android:hint="You will see input here"
+    android:hint="Long Press below and say something"
     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
 
-<!--<ImageButton-->
-    <!--android:id="@+id/button"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginBottom="20dp"-->
-    <!--android:background="@drawable/button_background" />-->
+<ImageButton
+    android:id="@+id/button"
+    android:layout_width="wrap_content"
+    android:contentDescription="Long press and speak "
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="20dp"
+
+    android:background="@drawable/button_background" />
 
 </RelativeLayout>
