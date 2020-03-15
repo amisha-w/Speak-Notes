@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Mcan</string>
+    <string name="title_activity_note_take">note_take</string>
 </resources>
