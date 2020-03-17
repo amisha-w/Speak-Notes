@@ -9,17 +9,19 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class note_taking extends AppCompatActivity {
-
+    boolean listening = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_taking);
         final EditText editText = findViewById(R.id.noteText);
+
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
 
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -50,7 +52,8 @@ public class note_taking extends AppCompatActivity {
 
             @Override
             public void onEndOfSpeech() {
-
+                mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+                Toast.makeText(getApplicationContext(),"EoSpeech", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -67,10 +70,18 @@ public class note_taking extends AppCompatActivity {
                 //displaying the first match
                 if (matches != null)
                     editText.setText(editText.getText()+matches.get(0));
+//                mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+//                Toast.makeText(getApplicationContext(),"EoSpeech", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onPartialResults(Bundle bundle) {
+                ArrayList<String> matches = bundle
+                        .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+
+                //displaying the first match
+                if (matches != null)
+                    editText.setText(editText.getText()+matches.get(0));
 
             }
 
@@ -79,24 +90,39 @@ public class note_taking extends AppCompatActivity {
 
             }
         });
+        findViewById(R.id.noteButton).setOnClickListener( new View.OnClickListener() {
 
-        findViewById(R.id.noteButton).setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_UP:
-                        mSpeechRecognizer.stopListening();
-                        editText.setHint("Long press the button below & speak.");
-                        break;
-
-                    case MotionEvent.ACTION_DOWN:
-                        mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
-                        editText.setText("");
-                        editText.setHint("Listening...");
-                        break;
+            public void onClick(View v) {
+                if(!listening){
+                    mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+                    editText.setText("");
+                    editText.setHint("Listening...");
+                    listening=true;
+                }else{
+                    mSpeechRecognizer.stopListening();
+                    editText.setHint("Long press the button below & speak.");
+                    listening=false;
                 }
-                return false;
             }
         });
+//        findViewById(R.id.noteButton).setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                switch (motionEvent.getAction()) {
+//                    case MotionEvent.ACTION_UP:
+//                        mSpeechRecognizer.stopListening();
+//                        editText.setHint("Long press the button below & speak.");
+//                        break;
+//
+//                    case MotionEvent.ACTION_DOWN:
+//                        mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+//                        editText.setText("");
+//                        editText.setHint("Listening...");
+//                        break;
+//                }
+//                return false;
+//            }
+//        });
     }
 }

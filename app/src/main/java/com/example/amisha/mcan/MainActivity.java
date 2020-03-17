@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 if (matches != null) {
                     editText.setText(matches.get(0));
                     if (matches.get(0).toLowerCase().equals("take a note")) {
-                        Intent notepage = new Intent(MainActivity.this, note_taking.class);
+                        Intent notepage = new Intent(MainActivity.this, VoiceRecognitionActivity.class);
                         startActivity(notepage);
                     }
                 }

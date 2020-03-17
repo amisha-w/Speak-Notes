@@ -22,7 +22,8 @@
             android:name=".note_take"
             android:label="@string/title_activity_note_take"
             android:theme="@style/AppTheme" />
-        <activity android:name=".note_taking"></activity>
+        <activity android:name=".note_taking" />
+        <activity android:name=".VoiceRecognitionActivity"></activity>
     </application>
 
 </manifest>

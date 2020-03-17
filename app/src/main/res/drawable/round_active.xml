@@ -7,10 +7,10 @@
     </item>
 
     <item
-        android:bottom="50dp"
+        android:bottom="20dp"
         android:drawable="@drawable/icon_record"
-        android:left="50dp"
-        android:right="50dp"
-        android:top="50dp" />
+        android:left="20dp"
+        android:right="20dp"
+        android:top="20dp" />
 
 </layer-list>
