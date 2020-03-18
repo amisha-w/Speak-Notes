@@ -9,8 +9,12 @@ import android.provider.Settings;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v4.content.ContextCompat;
+//import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -77,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
                     if (matches.get(0).toLowerCase().equals("take a note")) {
                         Intent notepage = new Intent(MainActivity.this, VoiceRecognitionActivity.class);
                         startActivity(notepage);
+                    }
+                    else if (matches.get(0).toLowerCase().equals("ocr")) {
+                        Intent ocrp = new Intent(MainActivity.this, ocr.class);
+                        startActivity(ocrp);
                     }
                 }
             }

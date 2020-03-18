@@ -3,6 +3,7 @@
     package="com.example.amisha.mcan">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -18,12 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".note_take"
-            android:label="@string/title_activity_note_take"
-            android:theme="@style/AppTheme" />
+
         <activity android:name=".note_taking" />
-        <activity android:name=".VoiceRecognitionActivity"></activity>
+        <activity android:name=".VoiceRecognitionActivity" />
+        <activity android:name=".ocr"></activity>
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="OCR" />
+
+
     </application>
 
 </manifest>
