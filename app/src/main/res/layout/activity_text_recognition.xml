@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TextRecognition">
+
+    <ImageView
+        android:id="@+id/text_img"
+        android:layout_width="match_parent"
+        android:layout_height="400dp" />
+
+    <TextView
+        android:id="@+id/text_display"
+        android:layout_width="match_parent"
+        android:text="-"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_img"
+        android:textSize="26dp"
+        android:layout_margin="10dp"
+        />
+
+    <Button
+        android:id="@+id/capture_btn"
+        android:textAllCaps="false"
+        android:text="Capture Image"
+        android:layout_above="@+id/extract_btn"
+        android:textSize="17dp"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/extract_btn"
+        android:layout_alignParentBottom="true"
+        android:textAllCaps="false"
+        android:text="Extract Text"
+        android:textSize="17dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

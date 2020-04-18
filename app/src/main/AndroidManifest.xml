@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -19,15 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".note_taking" />
         <activity android:name=".VoiceRecognitionActivity" />
-        <activity android:name=".ocr"></activity>
+        <activity android:name=".ocr" />
+
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="OCR" />
 
-
+        <activity android:name=".TextRecognition"><meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="ocr" /></activity>
     </application>
 
 </manifest>

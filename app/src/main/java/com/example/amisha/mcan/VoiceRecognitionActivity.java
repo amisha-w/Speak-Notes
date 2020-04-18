@@ -129,13 +129,14 @@ public class VoiceRecognitionActivity extends Activity implements
 
         ArrayList<String> matches = arg0
                 .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-
+//        speechString = speechString + "! " + matches.get(0);
         returnedText.setText(speechString + matches.get(0));
 
 
     }
 
     @Override
+
     public void onReadyForSpeech(Bundle arg0) {
         Log.i(LOG_TAG, "onReadyForSpeech");
     }
@@ -146,6 +147,7 @@ public class VoiceRecognitionActivity extends Activity implements
         ArrayList<String> matches = results
                 .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         speechString = speechString + ". " + matches.get(0);
+
     }
 
     @Override

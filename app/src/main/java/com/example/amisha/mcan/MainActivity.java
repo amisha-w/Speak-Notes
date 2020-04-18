@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextClock;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -85,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
                     else if (matches.get(0).toLowerCase().equals("ocr")) {
                         Intent ocrp = new Intent(MainActivity.this, ocr.class);
                         startActivity(ocrp);
+                    }
+                    else if (matches.get(0).toLowerCase().equals("scan document")) {
+                        Intent scan = new Intent(MainActivity.this, TextRecognition.class);
+                        startActivity(scan);
                     }
                 }
             }
