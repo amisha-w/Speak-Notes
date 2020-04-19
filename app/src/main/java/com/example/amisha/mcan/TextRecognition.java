@@ -2,6 +2,7 @@ package com.example.amisha.mcan;
 
 //import android.support.v7.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -9,10 +10,12 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +27,11 @@ import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextDetector;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class TextRecognition extends AppCompatActivity{
 
@@ -43,7 +51,7 @@ public class TextRecognition extends AppCompatActivity{
         extractBtn = findViewById(R.id.extract_btn);
         extractedText = findViewById(R.id.text_display);
         imgView = findViewById(R.id.text_img);
-
+        imgView.setImageDrawable(getResources().getDrawable(R.drawable.ic_placeholder));
         captureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +66,58 @@ public class TextRecognition extends AppCompatActivity{
                 detectTextFromImage();
             }
         });
+    }
+
+    public void btn_saveDialog(View view){
+
+        final AlertDialog.Builder alert = new AlertDialog.Builder(TextRecognition.this);
+        View mView = getLayoutInflater().inflate(R.layout.savedialog,null);
+        final EditText text = mView.findViewById(R.id.text_input);
+        Button btn_cancel = mView.findViewById(R.id.cancel_btn);
+        Button btn_save = mView.findViewById(R.id.ok_btn);
+
+        alert.setView(mView);
+        final AlertDialog alertDialog = alert.create();
+        alertDialog.show();
+        alertDialog.setCanceledOnTouchOutside(false);
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String filename = text.getText().toString();
+                String content = extractedText.getText().toString();
+                saveTextAsFile(filename,content);
+                alertDialog.dismiss();
+            }
+        });
+    }
+
+    private void saveTextAsFile( String filename, String content){
+        String fileName = filename+".txt";
+        File folder = new File(Environment.getExternalStorageDirectory(),"Mcan");
+        if(!folder.exists())
+            folder.mkdir();
+        File file = new File(folder, fileName);
+        try{
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(content.getBytes());
+            fos.close();
+            Toast.makeText(this, "File "+fileName+" saved.", Toast.LENGTH_LONG).show();
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+            Toast.makeText(this, "File Not Found", Toast.LENGTH_SHORT).show();
+        }catch(IOException e){
+            e.printStackTrace();
+            Toast.makeText(this, "Error while saving!", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
     private void detectTextFromImage() {

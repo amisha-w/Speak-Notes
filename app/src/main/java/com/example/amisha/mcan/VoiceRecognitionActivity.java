@@ -217,7 +217,7 @@ public class VoiceRecognitionActivity extends Activity implements
         ArrayList<String> matches = results
                 .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         String received_command = matches.get(0);
-        Toast.makeText(this, ""+received_command, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, ""+received_command, Toast.LENGTH_SHORT).show();
         if(received_command.contains("save note")){
             String file_name = received_command.substring(received_command.indexOf("as") + 3).replace(" ","_");
             //Making a file based on extracted content

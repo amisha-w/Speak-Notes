@@ -14,32 +14,45 @@
     <TextView
         android:id="@+id/text_display"
         android:layout_width="match_parent"
-        android:text="-"
+        android:hint="Extracted text appears here."
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_img"
-        android:textSize="10dp"
-        android:layout_margin="10dp"
+        android:textSize="20dp"
+        android:layout_margin="15dp"
         />
+
 
     <Button
         android:id="@+id/capture_btn"
-        android:textAllCaps="false"
-        android:text="Capture Image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/extract_btn"
-        android:textSize="17dp"
+        android:layout_marginBottom="-1dp"
         android:background="@color/colorAccent"
+        android:text="Capture Image"
+        android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:layout_marginBottom="10dp"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/extract_btn"
+        android:textAllCaps="false"
+        android:layout_above="@+id/save_btn2"
+        android:text="Extract Text"
+        android:textSize="20sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/extract_btn"
+        android:id="@+id/save_btn2"
         android:layout_alignParentBottom="true"
         android:textAllCaps="false"
-        android:text="Extract Text"
-        android:textSize="17dp"
-        android:background="@color/colorPrimary"
+        android:onClick="btn_saveDialog"
+        android:text="Save Text"
+        android:textSize="20sp"
+        android:background="@android:color/background_dark"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

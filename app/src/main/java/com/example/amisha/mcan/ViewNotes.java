@@ -48,7 +48,8 @@ public class ViewNotes extends Activity {
                 Toast.makeText(ViewNotes.this, ""+name+"", Toast.LENGTH_LONG).show();
                 String content = readText(name);
                 Intent intent = new Intent(ViewNotes.this,NoteText.class);
-                intent.putExtra("EXTRA_MESSAGE", content);
+                intent.putExtra("content", content);
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
         });
