@@ -1,11 +1,20 @@
 package com.example.amisha.mcan;
 
 //import android.support.v7.app.AppCompatActivity;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import android.os.Environment;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -15,16 +24,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class VoiceRecognitionActivity extends Activity implements
         RecognitionListener {
 
     private TextView returnedText;
+    private Button saveBtn;
+    private EditText editText;
     private ToggleButton toggleButton;
     private ProgressBar progressBar;
     private SpeechRecognizer speech = null;
@@ -38,9 +52,30 @@ public class VoiceRecognitionActivity extends Activity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice_recognition);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1000);
+        }
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1000);
+        }
+
         returnedText = (TextView) findViewById(R.id.textView1);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton1);
+        saveBtn = findViewById(R.id.save_btn);
+        editText = findViewById(R.id.title);
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String filename = editText.getText().toString();
+                String content = returnedText.getText().toString();
+                if(!filename.equals("") && !content.equals("") && !content.equals(" ") && !filename.equals(" "))
+                    saveTextAsFile(filename,content);
+            }
+        });
 
         progressBar.setVisibility(View.INVISIBLE);
         speech = SpeechRecognizer.createSpeechRecognizer(this);
@@ -76,6 +111,41 @@ public class VoiceRecognitionActivity extends Activity implements
             }
         });
 
+    }
+
+    private void saveTextAsFile( String filename, String content){
+        String fileName = filename+".txt";
+        File folder = new File(Environment.getExternalStorageDirectory(),"Mcan");
+        if(!folder.exists())
+            folder.mkdir();
+        File file = new File(folder, fileName);
+        try{
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(content.getBytes());
+            fos.close();
+            Toast.makeText(this, "File "+fileName+" saved.", Toast.LENGTH_LONG).show();
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+            Toast.makeText(this, "File Not Found", Toast.LENGTH_SHORT).show();
+        }catch(IOException e){
+            e.printStackTrace();
+            Toast.makeText(this, "Error while saving!", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode){
+            case 1000:
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(this, "Permission Granted.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "Permission Denied.", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+        }
     }
 
     @Override

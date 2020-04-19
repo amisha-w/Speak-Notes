@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/text_img"
         android:layout_width="match_parent"
-        android:layout_height="400dp" />
+        android:layout_height="300dp" />
 
     <TextView
         android:id="@+id/text_display"
@@ -17,7 +17,7 @@
         android:text="-"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_img"
-        android:textSize="26dp"
+        android:textSize="10dp"
         android:layout_margin="10dp"
         />
 

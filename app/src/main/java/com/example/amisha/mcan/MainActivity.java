@@ -91,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent scan = new Intent(MainActivity.this, TextRecognition.class);
                         startActivity(scan);
                     }
+                    else if (matches.get(0).toLowerCase().equals("display notes")) {
+                        Intent v = new Intent(MainActivity.this, ViewNotes.class);
+                        startActivity(v);
+                    }
                 }
             }
 
