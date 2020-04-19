@@ -216,6 +216,17 @@ public class VoiceRecognitionActivity extends Activity implements
         Log.i(LOG_TAG, "onResults");
         ArrayList<String> matches = results
                 .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+
+        String received_command = matches.get(0);
+        if(received_command.contains("save note")){
+            String file_name = received_command.substring(received_command.indexOf("as") + 3).replace(" ","_");
+            //Making a file based on extracted content
+            String content = returnedText.getText().toString();
+            saveTextAsFile(file_name,content);
+
+        }
+
+
         speechString = speechString + ". " + matches.get(0);
 
     }
