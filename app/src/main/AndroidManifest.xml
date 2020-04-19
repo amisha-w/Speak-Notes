@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewNotes"></activity>
+        <activity android:name=".NoteText"></activity>
+        <activity android:name=".NoteContent" />
+        <activity android:name=".ViewNotes" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +22,6 @@
         <activity android:name=".note_taking" />
         <activity android:name=".VoiceRecognitionActivity" />
         <activity android:name=".ocr" />
-
         <activity android:name=".TextRecognition">
             <meta-data
                 android:name="com.google.firebase.ml.vision.DEPENDENCIES"
@@ -31,15 +32,14 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="OCR" />
     </application>
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 </manifest>

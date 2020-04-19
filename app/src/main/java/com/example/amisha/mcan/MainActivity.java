@@ -79,22 +79,48 @@ public class MainActivity extends AppCompatActivity {
                 //displaying the first match
                 if (matches != null) {
                     editText.setText(matches.get(0));
-                    if (matches.get(0).toLowerCase().equals("take a note")) {
-                        Intent notepage = new Intent(MainActivity.this, VoiceRecognitionActivity.class);
-                        startActivity(notepage);
+                    Intent i=null;
+                    switch(matches.get(0).toLowerCase()){
+                        case "take a note":
+                        case "new note":
+                        case "write a note":
+                        case "quick note":
+                            i = new Intent(MainActivity.this, VoiceRecognitionActivity.class);
+                            break;
+                        case "ocr":
+                        case "detect words":
+                        case "read words":
+                            i = new Intent(MainActivity.this, ocr.class);
+                            break;
+                        case "scan a document":
+                        case "scan document":
+                        case "ocr image":
+                            i = new Intent(MainActivity.this, TextRecognition.class);
+                            break;
+                        case "display notes":
+                        case "view notes":
+                        case "my notes":
+                            i = new Intent(MainActivity.this, ViewNotes.class);
+                            break;
                     }
-                    else if (matches.get(0).toLowerCase().equals("ocr")) {
-                        Intent ocrp = new Intent(MainActivity.this, ocr.class);
-                        startActivity(ocrp);
-                    }
-                    else if (matches.get(0).toLowerCase().equals("scan document")) {
-                        Intent scan = new Intent(MainActivity.this, TextRecognition.class);
-                        startActivity(scan);
-                    }
-                    else if (matches.get(0).toLowerCase().equals("display notes")) {
-                        Intent v = new Intent(MainActivity.this, ViewNotes.class);
-                        startActivity(v);
-                    }
+//                    if (matches.get(0).toLowerCase().equals("take a note")) {
+//                        Intent notepage = new Intent(MainActivity.this, VoiceRecognitionActivity.class);
+//                        startActivity(notepage);
+//                    }
+//                    else if (matches.get(0).toLowerCase().equals("ocr")) {
+//                        Intent ocrp = new Intent(MainActivity.this, ocr.class);
+//                        startActivity(ocrp);
+//                    }
+//                    else if (matches.get(0).toLowerCase().equals("scan document")) {
+//                        Intent scan = new Intent(MainActivity.this, TextRecognition.class);
+//                        startActivity(scan);
+//                    }
+//                    else if (matches.get(0).toLowerCase().equals("display notes")) {
+//                        Intent v = new Intent(MainActivity.this, ViewNotes.class);
+//                        startActivity(v);
+//                    }
+                    if(i!=null)
+                    startActivity(i);
                 }
             }
 
