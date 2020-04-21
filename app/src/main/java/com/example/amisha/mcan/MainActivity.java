@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         case "display notes":
                         case "view notes":
                         case "my notes":
+                        case "show notes":
                             i = new Intent(MainActivity.this, ViewNotes.class);
                             break;
                     }
