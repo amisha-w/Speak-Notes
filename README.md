@@ -17,26 +17,28 @@ Speak Notes is a note-taking mobile application for the visually impaired. Its f
 
 
 
- 
-
 ### Scan a document
 
-
-![Demo](https://github.com/amisha-w/Speak-Notes/blob/master/assets/scan%20document.gif)  
+ <div align="center">
+ <img src="https://github.com/amisha-w/Speak-Notes/blob/master/assets/scan%20document.gif" height ="500px"></img>
+ </div>
 
 ### Take Notes
+ <div align="center">
+ <img src="https://github.com/amisha-w/Speak-Notes/blob/master/assets/take%20note.gif" height ="500px"></img>
+ </div>
 
-
-![Demo](https://github.com/amisha-w/Speak-Notes/blob/master/assets/take%20note.gif)  
 
 ### View Notes
-
-![Demo](https://github.com/amisha-w/Speak-Notes/blob/master/assets/view%20notes.gif) 
+ <div align="center">
+ <img src="https://github.com/amisha-w/Speak-Notes/blob/master/assets/view%20notes.gif" height ="500px"></img>
+ </div>
 
 ### Realtime OCR
 
-
-![Demo](https://github.com/amisha-w/Speak-Notes/blob/master/assets/ocr.gif) 
+<div align="center">
+ <img src="https://github.com/amisha-w/Speak-Notes/blob/master/assets/ocr.gif" height ="500px"></img>
+ </div>
 
 
 
