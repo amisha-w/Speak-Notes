@@ -18,7 +18,7 @@ Speak Notes is a note-taking mobile application for the visually impaired. Its f
 ## How it works
 
 <div align="center">
- <img src="https://github.com/amisha-w/Speak-Notes/blob/master/assets/diag.png" ></img>
+ <img src="https://github.com/amisha-w/Speak-Notes/blob/master/assets/diag.PNG" ></img>
  </div>
  
 -----------------------------------------------
