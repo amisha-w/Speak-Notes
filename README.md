@@ -1,6 +1,7 @@
 <div align="center">
 
-
+ <img src="./assets/post-it.svg" width="200px"></img>
+ 
 # `Speak Notes`
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-java.svg)](https://www.java.com/)
